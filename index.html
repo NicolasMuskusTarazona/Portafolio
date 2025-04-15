@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nicolás Muskus Tarazona | Desarrollador Web</title>
+    <link rel="stylesheet" href="./src/css/style.css" />
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Nicolás Muskus Tarazona</h1>
+            <p>Desarrollador Web en Formación</p>
+            <nav>
+                <ul>
+                    <li><a href="#about">Sobre mí</a></li>
+                    <li><a href="#skills">Conocimientos</a></li>
+                    <li><a href="#projects">Proyectos</a></li>
+                    <li><a href="#contact">Contacto</a></li>
+                </ul>
+            </nav>
+            <!-- Botón para activar/desactivar modo oscuro -->
+            <br>
+            <button id="dark-mode-toggle-btn">Modo Oscuro</button>
+        </div>
+    </header>
+    <main>
+        <section id="about" class="section">
+            <div class="container about">
+                <img src="src/storage/img/imagen2.png" alt="Nicolás Muskus" class="profile-img" />
+                <div>
+                    <h2>Sobre mí</h2>
+                    <p>
+                        Soy Nicolás Muskus Tarazona, estudiante apasionado por la programación, en constante aprendizaje de tecnologías web como HTML,
+                        CSS y JavaScript. Actualmente estoy enfocado en crear páginas web limpias, responsivas y accesibles.
+                    </p>
+                </div>
+            </div>
+        </section>
+        <section id="projects" class="section">
+            <div class="container">
+                <h2>Proyectos</h2>
+                <section class="section" id="snake-game">
+                    <h2>Snake Game</h2>
+                    <canvas id="gameCanvas" width="400" height="400"></canvas>
+                    <div id="game-over-message" class="hidden">
+                        <h3>Game Over</h3>
+                        <p>Your score: <span id="final-score">0</span></p>
+                        <button id="restart-btn">Play Again</button>
+                    </div>                      
+                    <p>Usa las teclas de flechas para mover la serpiente.</p>
+                </section>
+            </div>
+        </section>
+        <section id="skills" class="section">
+            <div class="container skills">
+                <h2>Conocimientos</h2>
+                <div class="logos">
+                    <div class="logo-item">
+                        <img class="logo-img" src="src/storage/img/html.png" alt="HTML" />
+                        <p>HTML</p>
+                    </div>
+                    <div class="logo-item">
+                        <img class="logo-img" src="src/storage/img/css.png" alt="CSS" />
+                        <p>CSS</p>
+                    </div>
+                    <div class="logo-item">
+                        <img class="logo-img" src="src/storage/img/js.png" alt="JavaScript" />
+                        <p>JavaScript</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="testimonials" class="section">
+            <div class="container">
+                <h2>Testimonios</h2>
+                <p id="testimonial">"Este es un testimonio aleatorio que se actualizará." </p>
+                <button onclick="showRandomTestimonial()">Ver otro testimonio</button>
+            </div>
+        </section>
+        <section id="contact" class="section">
+            <div class="container contact">
+                <h2>Contacto</h2>
+                <div class="github">
+                    <img class="github-img" src="src/storage/img/github.png" alt="GitHub Logo" />
+                    <a href="https://github.com/NicolasMuskusTarazona" target="_blank">github.com/NicolasMuskusTarazona</a>
+                </div>
+            </div>
+        </section>
+    </main>
+    <div id="clock-time"></div>
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Nicolás Muskus Tarazona. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+    <script src="./src/js/main.js"></script>
+</body>
+</html>
