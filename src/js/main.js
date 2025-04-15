@@ -46,12 +46,31 @@ let apple = spawnApple();
 let score = 0;
 let gameInterval = setInterval(gameLoop, 120);
 
+// Función para ajustar el tamaño del canvas de manera responsiva
+function resizeCanvas() {
+    // Establecer un tamaño máximo para el canvas (por ejemplo, 800x600px)
+    const maxWidth = 800;
+    const maxHeight = 600;
+
+    // Ajustar el tamaño del canvas según la ventana del navegador
+    canvas.width = Math.min(window.innerWidth, maxWidth);
+    canvas.height = Math.min(window.innerHeight, maxHeight);
+}
+
+// Llamar a la función de ajuste del canvas al cargar la página
+resizeCanvas();
+
+// Asegurarse de que el canvas se redimensione cuando cambie el tamaño de la ventana
+window.addEventListener("resize", resizeCanvas);
+
+// Función para generar una nueva manzana
 function spawnApple() {
     const x = Math.floor(Math.random() * (canvas.width / gridSize)) * gridSize;
     const y = Math.floor(Math.random() * (canvas.height / gridSize)) * gridSize;
     return { x, y };
 }
 
+// Función para dibujar la serpiente
 function drawSnake() {
     snake.forEach(part => {
         const gradient = ctx.createLinearGradient(part.x, part.y, part.x + gridSize, part.y + gridSize);
@@ -64,6 +83,7 @@ function drawSnake() {
     });
 }
 
+// Función para dibujar la manzana
 function drawApple() {
     ctx.fillStyle = "red";
     ctx.beginPath();
@@ -71,6 +91,7 @@ function drawApple() {
     ctx.fill();
 }
 
+// Función para mover la serpiente
 function moveSnake() {
     const head = { x: snake[0].x + direction.x, y: snake[0].y + direction.y };
     snake.unshift(head);
@@ -83,6 +104,7 @@ function moveSnake() {
     }
 }
 
+// Función para verificar las colisiones
 function checkCollision() {
     const head = snake[0];
     if (
@@ -96,6 +118,7 @@ function checkCollision() {
     }
 }
 
+// Bucle del juego
 function gameLoop() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     moveSnake();
@@ -104,6 +127,7 @@ function gameLoop() {
     drawApple();
 }
 
+// Controles de teclado (PC)
 document.addEventListener("keydown", e => {
     switch (e.key) {
         case "ArrowUp": if (direction.y === 0) direction = { x: 0, y: -gridSize }; break;
@@ -113,6 +137,38 @@ document.addEventListener("keydown", e => {
     }
 });
 
+// Controles táctiles (Móvil)
+let touchStartX = 0;
+let touchStartY = 0;
+let touchEndX = 0;
+let touchEndY = 0;
+
+canvas.addEventListener("touchstart", e => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+});
+
+canvas.addEventListener("touchmove", e => {
+    touchEndX = e.touches[0].clientX;
+    touchEndY = e.touches[0].clientY;
+});
+
+canvas.addEventListener("touchend", () => {
+    if (touchEndX < touchStartX && direction.x === 0) {
+        direction = { x: -gridSize, y: 0 }; // Izquierda
+    }
+    if (touchEndX > touchStartX && direction.x === 0) {
+        direction = { x: gridSize, y: 0 }; // Derecha
+    }
+    if (touchEndY < touchStartY && direction.y === 0) {
+        direction = { x: 0, y: -gridSize }; // Arriba
+    }
+    if (touchEndY > touchStartY && direction.y === 0) {
+        direction = { x: 0, y: gridSize }; // Abajo
+    }
+});
+
+// Botón de reiniciar el juego
 document.getElementById("restart-btn").addEventListener("click", () => {
     document.getElementById("game-over-message").style.display = "none";
     snake = [{ x: 160, y: 160 }];
