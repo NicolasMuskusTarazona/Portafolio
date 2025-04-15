@@ -48,13 +48,9 @@ let gameInterval = setInterval(gameLoop, 120);
 
 // Función para ajustar el tamaño del canvas de manera responsiva
 function resizeCanvas() {
-    // Establecer un tamaño máximo para el canvas (por ejemplo, 800x600px)
-    const maxWidth = 800;
-    const maxHeight = 600;
-
-    // Ajustar el tamaño del canvas según la ventana del navegador
-    canvas.width = Math.min(window.innerWidth, maxWidth);
-    canvas.height = Math.min(window.innerHeight, maxHeight);
+    // Ajustamos el tamaño del canvas usando unidades vh y vw para adaptarse a la pantalla
+    canvas.width = Math.floor(window.innerWidth * 0.8);  // 80% del ancho de la pantalla
+    canvas.height = Math.floor(window.innerHeight * 0.6);  // 60% de la altura de la pantalla
 }
 
 // Llamar a la función de ajuste del canvas al cargar la página

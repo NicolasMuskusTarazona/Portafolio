@@ -384,3 +384,67 @@ body.dark-mode .section p {
 #testimonials button:hover {
     background-color: #0a58ca;
 }
+/* Agregar una media query para dispositivos pequeños */
+@media (max-width: 767px) {
+    /* Ajustar el tamaño del canvas del juego para móviles */
+    #gameCanvas {
+        width: 100%;
+        height: auto;
+    }
+
+    /* Cambiar el layout de la sección "about" a columna */
+    .about {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about div {
+        max-width: 100%;
+    }
+
+    /* Ajustar las imágenes de perfil y logos en "Conocimientos" */
+    .profile-img {
+        width: 150px;
+        height: auto;
+        margin-bottom: 20px;
+    }
+
+    .logos {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .logo-item {
+        margin-bottom: 20px;
+    }
+
+    /* Asegurarse de que el botón de modo oscuro sea más accesible */
+    #dark-mode-toggle-btn {
+        width: 100%;
+        font-size: 1rem;
+    }
+
+    /* Asegurar que los márgenes en las secciones no se vean apretados en dispositivos pequeños */
+    .section {
+        padding: 15px 10px;
+    }
+
+    /* Asegurar que las secciones y contenido se adapten */
+    #projects, #skills, #testimonials, #contact {
+        padding: 20px 10px;
+    }
+}
+
+@media (min-width: 768px) {
+    /* Mantener el diseño en columnas en pantallas más grandes */
+    .about {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .about div {
+        max-width: 600px;
+        text-align: left;
+    }
+}
